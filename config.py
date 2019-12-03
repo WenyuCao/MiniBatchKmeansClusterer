@@ -4,6 +4,7 @@ csvDatasetsPath = None
 algoNames = None
 clusteringResultsPath = None
 timeSeriesToyDatasetName = None
+timeSeriesDatasetsPath = None
 
 def fetchConfig():
     # we use the global key word to being able to change the values of the variables declared outside the function
@@ -11,6 +12,7 @@ def fetchConfig():
     global clusteringResultsPath
     global algoNames
     global timeSeriesToyDatasetName
+    global timeSeriesDatasetsPath
 
     configFilePath = "/home/camila/Desktop/TESIS/DATA/config.json"
     with open(configFilePath) as f:
@@ -20,6 +22,7 @@ def fetchConfig():
     clusteringResultsPath = data.get("clusteringResultsPath")
     algoNames = data.get("algoNames")
     timeSeriesToyDatasetName = data.get("timeSeriesToyDatasetName")
+    timeSeriesDatasetsPath = data.get("timeSeriesDatasetsPath")
 
 
 def getCsvDatasetsPath():
@@ -44,6 +47,13 @@ def getTimeSeriesToyDatasetName():
     # else
     fetchConfig()
     return timeSeriesToyDatasetName
+
+def getTimeSeriesDatasetsPath():
+    if timeSeriesDatasetsPath is not None:
+        return timeSeriesDatasetsPath
+    # else
+    fetchConfig()
+    return timeSeriesDatasetsPath
 
 
 def getMbkName():

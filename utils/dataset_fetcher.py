@@ -2,11 +2,11 @@ import numpy as np
 import os
 from sys import exit
 import csv
-from config import getTimeSeriesToyDatasetName, getCsvDatasetsPath
+from config import getTimeSeriesToyDatasetName, getCsvDatasetsPath, getTimeSeriesDatasetsPath
 
 def getTimeSeriesDatasetFromFolder():
     fileFullName = getTimeSeriesToyDatasetName()
-    filePath = getCsvDatasetsPath() + fileFullName
+    filePath = getTimeSeriesDatasetsPath() + fileFullName
     # get the k param from header
     # with open(filePath, newline='') as f:
     #     reader = csv.reader(f)

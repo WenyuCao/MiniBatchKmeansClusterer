@@ -2,10 +2,10 @@ import json
 
 import numpy as np
 import os
-from config import getClusteringResultsPath, getMbkName
+from config import getClusteringResultsPath, getMbkName, getTimeSeriesDatasetsPath, getTimeSeriesToyDatasetName
 import shutil
 
-folder = getClusteringResultsPath() + getMbkName() + '/'
+folder = getClusteringResultsPath() + getTimeSeriesToyDatasetName() + '/' + getMbkName() + '/'
 
 
 def resetStorage():
