@@ -5,7 +5,7 @@ import csv
 from config import getTimeSeriesToyDatasetName, getCsvDatasetsPath, getTimeSeriesDatasetsPath
 
 def getTimeSeriesDatasetFromFolder():
-    fileFullName = getTimeSeriesToyDatasetName()
+    fileFullName = getTimeSeriesToyDatasetName() + ".csv"
     filePath = getTimeSeriesDatasetsPath() + fileFullName
     # get the k param from header
     # with open(filePath, newline='') as f:
