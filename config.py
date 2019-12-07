@@ -1,69 +1,63 @@
 import json
 
-csvDatasetsPath = None
+paths = None
 algoNames = None
-clusteringResultsPath = None
 timeSeriesToyDatasetName = None
-timeSeriesDatasetsPath = None
 
-def fetchConfig():
+def _getPaths():
+    return paths
+
+
+def _getAlgoNames():
+    return algoNames
+
+
+def _getTimeSeriesToyDatasetName():
+    return timeSeriesToyDatasetName
+
+
+def _fetchConfig():
     # we use the global key word to being able to change the values of the variables declared outside the function
-    global csvDatasetsPath
-    global clusteringResultsPath
+    global paths
     global algoNames
     global timeSeriesToyDatasetName
-    global timeSeriesDatasetsPath
 
     configFilePath = "/home/camila/Desktop/TESIS/DATA/config.json"
     with open(configFilePath) as f:
         data = json.load(f)
     # fill variables
-    csvDatasetsPath = data.get("csvDatasetsPath")
-    clusteringResultsPath = data.get("clusteringResultsPath")
+    paths = data.get("paths")
     algoNames = data.get("algoNames")
     timeSeriesToyDatasetName = data.get("timeSeriesToyDatasetName")
-    timeSeriesDatasetsPath = data.get("timeSeriesDatasetsPath")
 
 
-def getCsvDatasetsPath():
-    if csvDatasetsPath is not None:
-        return csvDatasetsPath
+def _fetchElementIfNull(_getter):
+    element = _getter()
+    if (element != None):
+        return element
     # else
-    fetchConfig()
-    return csvDatasetsPath
+    _fetchConfig()
+    return _getter()
+
+
+def _getElementFromDict(key, _getter):
+    dict = _fetchElementIfNull(_getter)
+    return dict.get(key)
 
 
 def getClusteringResultsPath():
-    if clusteringResultsPath is not None:
-        return clusteringResultsPath
-    # else
-    fetchConfig()
-    return clusteringResultsPath
+    return _getElementFromDict(key="clusteringResultsPath", _getter=_getPaths)
 
 
 def getTimeSeriesToyDatasetName():
-    if timeSeriesToyDatasetName is not None:
-        return timeSeriesToyDatasetName
-    # else
-    fetchConfig()
-    return timeSeriesToyDatasetName
+    return _fetchElementIfNull(_getTimeSeriesToyDatasetName)
+
 
 def getTimeSeriesDatasetsPath():
-    if timeSeriesDatasetsPath is not None:
-        return timeSeriesDatasetsPath
-    # else
-    fetchConfig()
-    return timeSeriesDatasetsPath
+    return _getElementFromDict(key="timeSeriesDatasetsPath", _getter=_getPaths)
 
 
 def getMbkName():
-    key = "mbk"
-    mbkName = algoNames.get(key)
-    if (mbkName != None):
-        return mbkName
-    # else
-    fetchConfig()
-    return algoNames.get(key)
+    return _getElementFromDict(key="mbk", _getter=_getAlgoNames)
 
 
-resourcesFolder = getCsvDatasetsPath()

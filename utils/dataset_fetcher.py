@@ -1,8 +1,5 @@
 import numpy as np
-import os
-from sys import exit
-import csv
-from config import getTimeSeriesToyDatasetName, getCsvDatasetsPath, getTimeSeriesDatasetsPath
+from config import getTimeSeriesToyDatasetName, getTimeSeriesDatasetsPath
 
 def getTimeSeriesDatasetFromFolder():
     fileFullName = getTimeSeriesToyDatasetName() + ".csv"
